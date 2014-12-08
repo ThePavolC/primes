@@ -1,7 +1,7 @@
 from datetime import datetime
 import sys
 
-LIMIT = 1000
+LIMIT = 10000
 RESULT = []
 
 """
@@ -26,7 +26,7 @@ for number in numbers:
 
 end = datetime.now()
 delta = end - start
-print RESULT
+#print RESULT
 print 'xrange():',delta, '# of primes:',len(RESULT)
 
 #with open('primes.txt','w') as f:
@@ -55,7 +55,7 @@ for number in numbers:
 end = datetime.now()
 
 delta = end - start
-print RESULT
+#print RESULT
 print 'xrange() descendent:',delta, '# of primes:',len(RESULT)
 
 
@@ -81,7 +81,7 @@ for number in numbers:
 end = datetime.now()
 
 delta = end - start
-print RESULT
+#print RESULT
 print 'range():',delta, '# of primes:',len(RESULT)
 
 """
@@ -103,8 +103,38 @@ for index,number in enumerate(primes):
 for i,p in enumerate(primes):
     if p:
         RESULT.append(i)
-print RESULT[2:]
+#print RESULT[2:]
 
 end = datetime.now()
 delta = end - start
 print "Different approach:",delta, '# of primes:',len(RESULT[2:])
+
+"""
+Using Filter with range()
+"""
+start = datetime.now()
+numbers = range(2,LIMIT)
+RESULT = []
+
+#filter(is_prime,numbers)
+RESULT.extend(filter(is_prime,numbers))
+
+end = datetime.now()
+delta = end - start
+
+print 'filter(f,range):',delta, '# of primes:',len(RESULT)
+
+"""
+Using Filter with xrange()
+"""
+start = datetime.now()
+numbers = xrange(2,LIMIT)
+RESULT = []
+
+#filter(is_prime,numbers)
+RESULT.extend(filter(is_prime,numbers))
+
+end = datetime.now()
+delta = end - start
+
+print 'filter(f,xrange):',delta, '# of primes:',len(RESULT)
